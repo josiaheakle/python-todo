@@ -1,8 +1,10 @@
 <header>
-    <h1>{{ title or "Todo Title"}}</h1>
-    <span>Hello {{ current_user.firstName or 'anon' }}!</span>
+    {% if (current_user.is_authenticated) %}
+        <span id="title">{{ current_user.firstName + "'s Todo"}}</span>
+    {% else %}
+        <span id="title">Todo</span>
+    {% endif %}
     <nav>
-        <a href="{{url_for('index')}}">Home</a>
         {% if (current_user.is_anonymous ) %}
         <a href="{{url_for('login')}}">Login</a>
         {% else %}

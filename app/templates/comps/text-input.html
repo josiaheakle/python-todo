@@ -1,0 +1,13 @@
+{% macro text_input(input) %}
+
+<p class="input-wrapper">
+    {{ input.label }}
+    {{ input() }}
+    <span class="input-error-container">
+        {% for error in input.errors%}
+        <span class="input-error">{{error}}</span>
+        {% endfor %}
+    </span>
+</p>
+
+{% endmacro %}

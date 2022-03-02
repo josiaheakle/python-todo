@@ -1,10 +1,90 @@
+/* ROOT */
+
+html {
+    
+}
+
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
+
+main { /* Centers page fitting to viewport*/
+    width: 100vw;
+    min-height: calc(100vh - 3rem);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Header */
 
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding: 0 10vw;
+    
+    height: 3rem;
+
+    background-color: lightblue;
 }
+
+header #title {
+    font-size: 1.5rem;
+}
+
+/* Flash Messages */
+
+#flash-messages {
+    width: 100vw;
+    margin: 1rem 0 0 0;
+    padding: 0;
+
+    color: red;
+
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Forms */
+form {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-wrapper label {
+    margin-right: 1rem;
+}
+
+p.input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-error-container {
+    margin-left: 1rem;
+    width: fit-content;
+    color: red;
+    position: absolute;
+    left: 100%;
+}
+
+.center-self {
+    justify-self: center;
+    text-align: center;
+}
+

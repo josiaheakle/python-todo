@@ -1,5 +1,6 @@
-from flask import render_template, url_for, flash, redirect
-from flask_login import current_user, login_user, logout_user
+from flask import render_template, url_for, flash, redirect, request
+from flask_login import current_user, login_required, login_user, logout_user
+from werkzeug.urls import url_parse
 
 from app import app, forms, models, db
 
@@ -9,12 +10,13 @@ def check_user_logged_in():
 
 @app.route("/")
 @app.route("/index")
+@login_required
 def index():
     items = [
         {"name" : "Item 1"},
         {"name" : "Item 2"},
     ]
-    return render_template("pages/index.html",  title="HELLO", items=items)
+    return render_template("pages/index.html",  title="Python Todo", items=items)
 
 
 @app.route("/login", methods=["GET","POST"])
@@ -27,7 +29,14 @@ def login():
             flash('Invalid username or password.')
             return redirect(url_for('login'))
         login_user(user, remember=form.rememberMe.data)
-        return redirect(url_for("index"))
+        if (request.args.get('next')):
+            next_page = request.args.get('next').split('/')[0]
+        else:
+            next_page = 'index'
+        if (not next_page or url_parse(next_page).netloc != ''):
+            next_page = 'index'
+        return redirect(url_for(next_page))
+
     return render_template("pages/login.html", form=form)
 
 @app.route("/register", methods=["GET", "POST"])
@@ -43,7 +52,13 @@ def register():
             db.session.add(user)
             db.session.commit()
             login_user(user, remember=form.rememberMe.data)
-            redirect("index")
+            if (request.args.get('next')):
+                next_page = request.args.get('next').split('/')[0]
+            else:
+                next_page = 'index'
+            if (not next_page or url_parse(next_page).netloc != ''):
+                next_page = 'index'
+            return redirect(url_for(next_page))
         else:
             if (isEmailTaken):
                 form.email.errors.append("Email already in use!")

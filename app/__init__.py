@@ -14,5 +14,6 @@ migrate = Migrate(app, db) # db migration object
 
 # Login Managaer
 login = LoginManager(app)
+login.login_view = "login"
 
 from app import routes, models # allow for routes and models to imported properties of app
