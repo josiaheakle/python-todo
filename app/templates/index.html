@@ -1,0 +1,11 @@
+{% extends 'comps/base.html' %}
+{% block content %}
+    <h1>CONTENT is here</h1>
+    {% if (items) %}
+        <ul>
+            {% for i in items %}
+                <li>{{i.name}}</li>
+            {% endfor %} 
+        </ul>
+    {% endif %}
+{% endblock %}
