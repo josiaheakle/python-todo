@@ -1,8 +1,8 @@
-"""todo table
+"""todo and user table set up
 
-Revision ID: ef86e101dfd5
+Revision ID: bb8dc2b15a9f
 Revises: 
-Create Date: 2022-03-02 16:20:48.823950
+Create Date: 2022-03-02 20:30:08.519867
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ef86e101dfd5'
+revision = 'bb8dc2b15a9f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,7 +37,9 @@ def upgrade():
     sa.Column('title', sa.String(length=256), nullable=True),
     sa.Column('description', sa.String(length=1024), nullable=True),
     sa.Column('userId', sa.Integer(), nullable=True),
-    sa.Column('created', sa.DateTime(), nullable=True),
+    sa.Column('createdDate', sa.DateTime(), nullable=True),
+    sa.Column('dueDate', sa.DateTime(), nullable=True),
+    sa.Column('completedDate', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['userId'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

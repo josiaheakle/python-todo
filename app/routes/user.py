@@ -1,27 +1,17 @@
 from flask import render_template, url_for, flash, redirect, request
-from flask_login import current_user, login_required, login_user, logout_user
+from flask_login import current_user, login_user, logout_user
 from werkzeug.urls import url_parse
 
 from app import app, forms, models, db
 
-def check_user_logged_in():
+def _check_user_logged_in():
     if (current_user.is_authenticated):
         return redirect(url_for('index'))
-
-@app.route("/")
-@app.route("/index")
-@login_required
-def index():
-    items = [
-        {"name" : "Item 1"},
-        {"name" : "Item 2"},
-    ]
-    return render_template("pages/index.html",  title="Python Todo", items=items)
 
 
 @app.route("/login", methods=["GET","POST"])
 def login():
-    check_user_logged_in()
+    _check_user_logged_in()
     form = forms.LoginForm()
     if (form.validate_on_submit()):
         user = models.User.query.filter_by(username=form.username.data).first()
@@ -41,7 +31,7 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    check_user_logged_in()
+    _check_user_logged_in()
     form = forms.RegisterForm()
     if (form.validate_on_submit()):
         isUsernameTaken = models.User.query.filter_by(username=form.username.data).first()

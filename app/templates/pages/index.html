@@ -1,11 +1,14 @@
+{% from "comps/task-container.html" import task_container %}
 {% extends 'comps/base.html' %}
 {% block content %}
-    <h1>{{title or 'Todo App'}}</h1>
-    {% if (items) %}
-        <ul>
-            {% for i in items %}
-                <li>{{i.name}}</li>
-            {% endfor %} 
-        </ul>
-    {% endif %}
+
+
+    {# NEW TASK BUTTON #}
+    <a href="{{url_for('new_task')}}">New Task</a>
+    {{task_container(tasks)}}
+
+    {# Task Container of due tasks #}
+    {# Task container of completed tasks #}
+
+
 {% endblock %}

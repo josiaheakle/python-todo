@@ -1,0 +1,15 @@
+{% extends "comps/base.html" %}
+{% from "comps/text-input.html" import text_input %}
+
+{% block content %}
+
+<h1>New Task</h1>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+    {{ text_input(form.title) }}
+    {{ text_input(form.description) }}
+    {{ text_input(form.dueDate )}}
+    {{form.submit()}}
+</form>
+
+{% endblock %}

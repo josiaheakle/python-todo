@@ -1,0 +1,21 @@
+{% macro task_container(tasks) %}
+
+    <table class="task-container">
+        <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Completed</th>
+        </tr>
+        {% for task in tasks %}
+            <tr  class="task">
+                <td>{{task.title}}</td>
+                <td>{{task.dueDate}}</td>
+                <td>
+                    <input onclick="onCheckboxClick(this)" class="task-checkbox" id="task-complete-{{task.id}}" type="checkbox" name="taskCompleted" {{ "checked" if (task.completed) else "" }}>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="{{ url_for('static',filename='js/task-checkbox.js') }}"></script>
+
+{% endmacro %}
