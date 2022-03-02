@@ -34,6 +34,7 @@ def register():
     _check_user_logged_in()
     form = forms.RegisterForm()
     if (form.validate_on_submit()):
+        
         isUsernameTaken = models.User.query.filter_by(username=form.username.data).first()
         isEmailTaken = models.User.query.filter_by(email=form.email.data).first()
         if (not(isUsernameTaken or isEmailTaken)):

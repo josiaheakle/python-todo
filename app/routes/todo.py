@@ -22,6 +22,5 @@ def complete_task():
     task = models.Todo.query.filter_by(id=taskId).first()
     task.toggle()
     db.session.commit()
-
     return redirect('index')
     

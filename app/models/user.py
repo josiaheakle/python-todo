@@ -20,6 +20,10 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def __init__(self):
+        super().__init__()
+        
+
     def __repr__(self):
         return '<User {}, id[{}]>'.format(self.username, self.id)
 

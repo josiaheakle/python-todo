@@ -2,13 +2,7 @@
 {% extends 'comps/base.html' %}
 {% block content %}
 
-
-    {# NEW TASK BUTTON #}
-    <a href="{{url_for('new_task')}}">New Task</a>
     {{task_container(tasks)}}
-
-    {# Task Container of due tasks #}
-    {# Task container of completed tasks #}
-
+    <a id="new-task-button" href="{{url_for('new_task')}}">New Task</a>
 
 {% endblock %}

@@ -88,3 +88,20 @@ p.input-wrapper {
     text-align: center;
 }
 
+.task-container-header {
+    margin-bottom: 5rem;
+}
+
+tr.task:hover {
+    cursor: pointer;
+    background-color: aqua;
+}
+
+td {
+    text-align: center;
+    min-width: 20vw;
+}
+
+#new-task-button {
+    margin-top: 1rem;
+}
