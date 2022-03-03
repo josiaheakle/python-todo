@@ -1,8 +1,9 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin # required fns and properties for flask_login 
+from flask_login import UserMixin  # required fns and properties for flask_login
 
 from app import db, login
+
 
 class User(UserMixin, db.Model):
 
@@ -20,13 +21,10 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def __init__(self):
-        super().__init__()
-        
-
     def __repr__(self):
         return '<User {}, id[{}]>'.format(self.username, self.id)
 
-@login.user_loader # To show flask_login how to load user from db
+
+@login.user_loader  # To show flask_login how to load user from db
 def loadUser(id):
     return User.query.get(int(id))
