@@ -24,6 +24,17 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}, id[{}]>'.format(self.username, self.id)
 
+    def __init__(self, **kwargs):
+        if (kwargs.get("password")):
+            self.set_password(kwargs.get("password"))
+            del kwargs["password"]  
+        for key, value in kwargs:
+            if (self[key]):
+                self[key] = value
+        print(self)
+
+        
+
 
 @login.user_loader  # To show flask_login how to load user from db
 def loadUser(id):
